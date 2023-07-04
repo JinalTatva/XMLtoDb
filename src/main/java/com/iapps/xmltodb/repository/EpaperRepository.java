@@ -1,4 +1,4 @@
-package com.iapps.xmltodb.Respository;
+package com.iapps.xmltodb.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
