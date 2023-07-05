@@ -24,7 +24,6 @@ For testing test cases:- In STS/Eclipse Run XmLtoDbTests.java with JUnit Test or
 
 params are:-
 
-fromDate, toDate in long milliseconds format
 pageNo (starting with 0)
 pageSize (no of records you want in result)
 sortBy (specific column name on which you need to sort)
