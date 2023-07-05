@@ -37,6 +37,6 @@ public interface EpaperService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Page<EpaperDto> getEpaperList(Long fromDate, Long toDate, Integer pageNo,
+	public Page<EpaperDto> getEpaperList(Integer pageNo,
 			Integer pageSize, String sortBy, Boolean asc, String search) throws Exception;
 }

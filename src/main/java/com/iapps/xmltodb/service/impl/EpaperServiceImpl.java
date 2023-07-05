@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iapps.xmltodb.dto.EpaperDto;
@@ -66,13 +67,19 @@ public class EpaperServiceImpl implements EpaperService {
 	}
 
 	@Override
-	public Page<EpaperDto> getEpaperList(Long fromDate, Long toDate, Integer pageNo,
+	public Page<EpaperDto> getEpaperList(Integer pageNo,
 			Integer pageSize, String sortBy, Boolean asc, String search) throws Exception {
 
-		Pageable pageable = PageRequest.of(pageNo == null ? 0 : pageNo,
+		
+		Pageable pageable = PageRequest.of
+				(pageNo == null ? 0 : pageNo,
 				pageSize == null ? (Integer.MAX_VALUE - 1) : pageSize == Integer.MAX_VALUE ? (pageSize - 1) : pageSize,
 				Sort.by(asc == null || asc ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy == null ? "id" : sortBy));
-		return epaperRepository.findAll(pageable).map(EpaperConverter::convert);
+		if(!StringUtils.isEmpty(search)) {
+			return epaperRepository.findByNewsPaperNameLikeIgnoreCase(pageable,"%"+search+"%").map(EpaperConverter::convert);
+		}
+		else
+			return epaperRepository.findAll(pageable).map(EpaperConverter::convert);
 
 	}
 }

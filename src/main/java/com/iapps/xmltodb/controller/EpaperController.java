@@ -58,17 +58,16 @@ public class EpaperController {
 	 * @return
 	 */
 	@GetMapping("/epaperList")
-	public ResponseEntity<Object> getEpaperList(@RequestParam(value = "fromDate", required = false) Long fromDate,
-			@RequestParam(value = "toDate", required = false) Long toDate,
-			@RequestParam(value = "pageNo", required = false) Integer pageNo,
-			@RequestParam(value = "pageSize", required = false) Integer pageSize,
+	public ResponseEntity<Object> getEpaperList(
+			@RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
+			@RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
 			@RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy,
 			@RequestParam(value = "asc", defaultValue = "false", required = false) Boolean asc,
 			@RequestParam(value = "search", defaultValue = "", required = false) String search) {
 
 		log.info("get Files");
 		try {
-			Page<EpaperDto> pages = epaperService.getEpaperList(fromDate, toDate, pageNo, pageSize, sortBy, asc, search);
+			Page<EpaperDto> pages = epaperService.getEpaperList(pageNo, pageSize, sortBy, asc, search);
 			return ResponseEntity.status(HttpStatus.OK).body(pages);
 		} catch (Exception e) {
 			e.printStackTrace();
