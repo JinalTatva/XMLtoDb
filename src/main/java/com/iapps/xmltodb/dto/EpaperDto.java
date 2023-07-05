@@ -3,10 +3,17 @@ package com.iapps.xmltodb.dto;
 import java.time.Instant;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * @author JinalTatva
+ *
+ */
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class EpaperDto {
@@ -18,4 +25,5 @@ public class EpaperDto {
 	private Instant createdAt;
 	private Instant uploadedAt;
 	private String fileName;
+	
 }

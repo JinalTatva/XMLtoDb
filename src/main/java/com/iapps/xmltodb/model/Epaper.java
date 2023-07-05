@@ -2,7 +2,6 @@ package com.iapps.xmltodb.model;
 
 import java.time.Instant;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +14,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
+/**
+ * 
+ * @author JinalTatva
+ *
+ */
 @Entity
 @Table(name = "epaperrequest")
 @Data
