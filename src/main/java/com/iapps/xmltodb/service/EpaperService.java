@@ -27,8 +27,6 @@ public interface EpaperService {
 
 	/**
 	 * 
-	 * @param fromDate
-	 * @param toDate
 	 * @param pageNo
 	 * @param pageSize
 	 * @param sortBy

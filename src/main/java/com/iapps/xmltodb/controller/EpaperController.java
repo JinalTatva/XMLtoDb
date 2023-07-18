@@ -1,5 +1,7 @@
 package com.iapps.xmltodb.controller;
 
+import java.lang.System.Logger.Level;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -42,14 +44,13 @@ public class EpaperController {
 			return ResponseEntity.status(HttpStatus.OK).body(epaperDto);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+			return (ResponseEntity<Object>) ResponseEntity.internalServerError();
+//					(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 
 	/**
 	 * 
-	 * @param fromDate
-	 * @param toDate
 	 * @param pageNo
 	 * @param pageSize
 	 * @param sortBy
@@ -57,7 +58,7 @@ public class EpaperController {
 	 * @param search
 	 * @return
 	 */
-	@GetMapping("/epaperList")
+	@GetMapping("/epaper-list")
 	public ResponseEntity<Object> getEpaperList(
 			@RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
 			@RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
@@ -65,7 +66,7 @@ public class EpaperController {
 			@RequestParam(value = "asc", defaultValue = "false", required = false) Boolean asc,
 			@RequestParam(value = "search", defaultValue = "", required = false) String search) {
 
-		log.info("get Files");
+		log.info("get Epaper List");
 		try {
 			Page<EpaperDto> pages = epaperService.getEpaperList(pageNo, pageSize, sortBy, asc, search);
 			return ResponseEntity.status(HttpStatus.OK).body(pages);

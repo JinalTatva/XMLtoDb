@@ -44,7 +44,7 @@ class XmLtoDbTests {
 
 	@Test
 	public void validSortData_ThenNotNull() throws Exception {
-		Page<EpaperDto> result = epaperService.getEpaperList( null, null, 0, 10, "id", false, "");
-		Assert.assertEquals(ResponseEntity.status(HttpStatus.OK).body(result), epaperController.getEpaperList(null, null, 0, 10, "id", false, ""));
+		Page<EpaperDto> result = epaperService.getEpaperList(0, 10, "id", false, "");
+		Assert.assertEquals(ResponseEntity.status(HttpStatus.OK).body(result), epaperController.getEpaperList(0, 10, "id", false, ""));
 	}
 }
